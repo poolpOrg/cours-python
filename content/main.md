@@ -839,6 +839,26 @@ else:
     print("x n'est égal ni à 42, ni à 43)
 ```
 
+### pass
+Permet de remplacer un bloc de code pour... ne rien faire.
+La plupart du temps,
+il sert à ce que la syntaxe du langage soit respectée "le temps de" finir une implémentation,
+mais nous verrons par la suite qu'il s'imposera de lui-même dans certains cas.
+
+```python
+#! /usr/bin/env python
+
+def mafonction():
+    pass
+
+x = 42
+if x == 42:
+    print("x est égal à 42")
+else:
+    pass # TODO: à implémenter plus tard
+```
+
+
 
 ## Structures de contrôle de boucle
 
