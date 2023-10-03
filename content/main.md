@@ -730,6 +730,61 @@ Tous les opérateurs supportent des versions "avec assignation" comme on a pu vo
 `x &= 1`,  `x |= 1`, `x ^= 1`, `x <<= 1` ou encore `x >>= 1`.
 
 
+### À quoi ça peut donc bien servir ?
+
+Au delà des cas où les opérations binaires s'imposent à vous,
+parce que vous implémentez une specification où il est explicitement écrit "mettre le 13ème bit à 1",
+les opérateurs binaires permettent de simplifier certains motifs de code.
+
+Je vais donner un seul exemple pour que vous compreniez leur puissance et pourquoi ils est intéressant de les creuser:
+
+Si je veux stocker des informations concernant un utilisateur,
+comme par exemple ses droits sur une application,
+je peux le faire en assignant à chaque permission une variable de type `bool`...
+mais lorsque je voudrais mettre ça en base de donnée,
+ma table aura elle aussi une colonne pour chaque permission.
+Donc si j'ai 30 permissions différentes,
+j'ai 30 bool et 30 colonnes...
+qui débouche sur 30 ensemble de fonctions pour chaque droit,
+des test dans tous les sens pour vérifier si des droits sont compatibles (est-ce que c'est ok si j'ai le droit X et le droit Y),
+etc...
+
+Ça marche, c'est ce que font la plupart des personnes.
+
+Ou alors...
+
+On prends un `int`,
+on considère chacun de ces bits comme un `bool`: si le bit est à 0 c'est faux, s'il est à 1 c'est vrai.
+On a une seule valeur qui encode les permissions,
+une seule colonne en base de donnée,
+un seul set de fonction qui utilise les opérateurs binaires pour savoir si oui ou non un bit est "setté",
+et les tests sont plus simples car il est possible de vérifier plusieurs bits d'un coup et de fournir une liste de combinaisons interdites.
+
+```python
+user.canExec = False
+user.canWrite = True
+user.canRead = True
+if not user.canExec and user.canWrite and user.canRead:
+    print("l'utilisateur peut ecrire et lire mais pas executer")
+
+vs.
+
+user.permissions = WRITE|READ
+if user.permissions & EXEC|WRITE|READ == WRITE|READ:
+    print("l'utilisateur peut ecrire et lire mais pas executer")
+
+```
+
+C'est un coup à prendre,
+un peu de travail en amont pour comprendre la logique des opérateurs &, |, ^ et ~,
+mais le bénéfice est immense:
+il existe de nombreux cas où le code est grandement simplifié،
+où le stockage en base de donnée est simplifié,
+où les performances sont améliorées,
+et surtout c'est une connaissance qui se transpose à tous les langages.
+
+
+
 
 
 # Structures de contrôle et boucles
@@ -973,26 +1028,26 @@ mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
 
 # Exercices
 
-## exo1.py - input et print
+## exo01.py - input et print
 À l'aide des fonctions builtin `input()` et `print()`,
 écrire un programme qui demande à l'utilisateur d'entrer son prénom et son nombre préféré,
 puis afficher les informations.
 
-> exo1.py
+> exo01.py
 ```sh
-$ python exo1.py
+$ python exo01.py
 Quel est ton prénom ? Gilles
 Quel est ton nombre préféré ? 42
 Tu t'appelles Gilles et ton nombre préféré est 42.
 $ 
 ```
 
-## exo2.py - boucle for
+## exo02.py - boucle for
 Créer une boucle `for` qui affiche les nombres de 1 à 10.
 
-> exo2.py
+> exo02.py
 ```sh
-$ python exo2.py
+$ python exo02.py
 1
 2
 3
@@ -1006,13 +1061,13 @@ $ python exo2.py
 $ 
 ```
 
-## exo3.py - boucle while
+## exo03.py - boucle while
 Créer une boucle `while` qui affiche les nombres de 1 à 10,
 sans afficher le chiffre 3.
 
-> exo3.py
+> exo03.py
 ```sh
-$ python exo3.py
+$ python exo03.py
 1
 2
 4
@@ -1025,16 +1080,16 @@ $ python exo3.py
 $ 
 ```
 
-## exo4.py - puissance de 2
+## exo04.py - puissance de 2
 En important le module `sys`,
 vous aurez accès aux paramètres passés à votre programme au travers du tableau `sys.argv`.
 La fonction builtin `int()` permet de convertir une chaine en nombre,
 donc `int("10")` retourne `10`.
 Créer une fonction `puissance(n)` qui retourne 2 à la puissance de `n`.
 
-> exo4.py
+> exo04.py
 ```sh
-$ python exo4.py
+$ python exo04.py
 1024
 $ 
 ```
