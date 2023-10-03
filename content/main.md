@@ -845,6 +845,7 @@ La plupart du temps,
 il sert à ce que la syntaxe du langage soit respectée "le temps de" finir une implémentation,
 mais nous verrons par la suite qu'il s'imposera de lui-même dans certains cas.
 
+> pass
 ```python
 #! /usr/bin/env python
 
@@ -858,6 +859,72 @@ else:
     pass # TODO: à implémenter plus tard
 ```
 
+### match
+
+Le mot-clé `match`` a été introduit dans Python 3.10 comme une extension de la capacité de correspondance de motifs (ou "pattern matching") du langage.
+Il offre une manière plus expressive et lisible de traiter les structures de données et de prendre des décisions basées sur la forme et le contenu de ces structures.
+
+La correspondance de motifs avec match peut être vue comme une version généralisée et améliorée de l'instruction switch/case présente dans d'autres langages,
+mais avec des capacités beaucoup plus puissantes.
+
+> match
+```python
+def http_status(code):
+    match code:
+        case 200:
+            return "OK"
+        case 403:
+            return "Forbidden"
+        case 404:
+            return "Not Found"
+        case 500:
+            return "Internal Server Error"
+        case _:
+            return "Autre"
+
+vs
+
+def http_status(code):
+    if code == 200:
+        return "OK"
+    elif code == 403:
+        return "Forbidden"
+    elif code == 404:
+        return "Not Found"
+    elif code == 500:
+        return "Internal Server Error"
+    else:
+        return "Autre"
+```
+
+La structure de contrôle match est extrêmement puissante et flexible,
+elle peut être utilisée avec des motifs de "matching" plus complexes.
+Nous ne les verrons pas tous tout de suite,
+certains repointeront le bout de leur nez plus tard,
+mais nous allons voir encore un exemple qui exploite les variables de capture.
+
+
+
+#### Variables de capture
+Dans l'exemple de match plus complexe,
+les variables `x` et `y` prennent a valeur de leur position dans la variable `point`.
+
+> match plus complexe
+```python
+point = (2, 3)
+
+match point:
+    case (0, 0):
+        print("Origine")
+    case (0, y):
+        print(f"Sur l'axe des Y, à la position {y}")
+    case (x, 0):
+        print(f"Sur l'axe des X, à la position {x}")
+    case (x, y):
+        print(f"Position ({x}, {y})")
+    case _:
+        print("Autre")
+```
 
 
 ## Structures de contrôle de boucle
