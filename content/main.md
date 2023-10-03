@@ -22,7 +22,9 @@ Python est souvent recommandé comme premier langage de programmation pour les d
 mais ne vous y trompez pas: sa puissance et sa flexibilité en font un excellent choix pour les projets professionnels de grande envergure.
 
 
-# Un langage interprété ?
+# Session 1
+
+## Un langage interprété ?
 
 En quelques mots:
 
@@ -69,14 +71,14 @@ qui vise à produire un compilateur capable de convertir du Python en code natif
 on aurai alors les performances d'un langage comme C++ mais avec la simplicité de Python.
 
 
-# Syntaxe
+## Syntaxe
 
 Nous n'allons pas voir tous les détails de la syntaxe d'un coup,
 on va pouvoir les découvrir progressivement au fur et à mesure que le cours avance,
 mais voici quelques spécificités pour pouvoir commencer à comprendre les premiers exemples.
 
 
-## Indentation
+### Indentation
 Contrairement à de nombreux autres langages, Python utilise l'indentation (espaces ou tabulations) pour délimiter les blocs de code.
 Cela rend le code Python propre et lisible.
 > indentation
@@ -87,7 +89,7 @@ else:
     print("Ceci est faux.")
 ```
 
-## Commentaires
+### Commentaires
 Les commentaires en Python commencent par le symbole #. Tout ce qui suit ce symbole sur la même ligne est considéré comme un commentaire.
 > commentaires
 ```python
@@ -95,7 +97,7 @@ Les commentaires en Python commencent par le symbole #. Tout ce qui suit ce symb
 print("Ceci n'est pas un commentaire.")  # Mais ceci en est un.
 ```
 
-## Variables
+### Variables
 En Python, les variables n'ont pas besoin d'être déclarées avec un type spécifique. Vous pouvez simplement les assigner à une valeur.
 > Variables
 ```python
@@ -111,7 +113,7 @@ a = 10
 a = "Bonjour"
 ```
 
-## Instructions
+### Instructions
 Les instructions sont exécutées de haut en bas.
 Vous pouvez utiliser des points-virgules pour séparer plusieurs instructions sur une seule ligne, bien que cela ne soit pas courant en Python.
 > instructions
@@ -121,7 +123,7 @@ y = 10
 z = 20; total = x + y + z
 ```
 
-## Importation de modules
+### Importation de modules
 Python possède une riche bibliothèque standard, et vous pouvez également utiliser des bibliothèques tierces. Pour accéder aux fonctions d'un module, vous devez l'importer.
 > import
 ```python
@@ -131,11 +133,11 @@ racine = math.sqrt(16)  # Utilise la fonction sqrt du module math
 
 
 
-# Les points d'entrées
+## Les points d'entrées
 
 Un "point d'entrée" désigne le point de départ d'un programme ou d'un script. Il existe plusieurs façons d'exécuter du code Python, et chacune a son propre point d'entrée. Voici une vue d'ensemble des différents points d'entrée en Python :
 
-## Script via `__main__`
+### Script via `__main__`
 
 Lorsque vous exécutez un fichier Python directement (par exemple, python mon_script.py), le code à l'intérieur de ce fichier est exécuté.
 Dans ce contexte, la variable spéciale `__name__` du fichier est définie sur `__main__`.
@@ -151,7 +153,7 @@ if __name__ == "__main__":
 
 
 
-## REPL (Read-Eval-Print Loop)
+### REPL (Read-Eval-Print Loop)
 
 Le REPL est un environnement interactif où vous pouvez saisir et exécuter du code Python ligne par ligne. Il est souvent utilisé pour des tests rapides, des débogages ou des expérimentations.
 Vous pouvez accéder au REPL simplement en tapant python (ou python3 selon votre installation) dans votre terminal ou console.
@@ -172,7 +174,7 @@ $
 ```
 
 
-## Module
+### Module
 
 Un module est un fichier Python contenant des fonctions, des classes et des variables, ainsi que du code exécutable.
 
@@ -211,7 +213,7 @@ et vous pouvez faire vos propres modules qui vous permetteront de réutiliser le
 
 
 
-# Commentaires
+## Commentaires
 
 Les commentaires en programmation sont des annotations ajoutées au code qui ne sont pas exécutées lors de son fonctionnement. Ils sont essentiels pour plusieurs raisons. Tout d'abord, ils permettent au développeur d'expliquer son raisonnement, de décrire la fonction d'un segment de code ou de donner des informations sur la manière dont une partie spécifique du programme fonctionne. Cela est particulièrement utile pour les équipes de développement, car cela facilite la compréhension du code par d'autres membres. De plus, les commentaires peuvent servir à désactiver temporairement certaines parties du code sans les supprimer, ce qui est pratique lors du débogage. En Python, les commentaires sont précédés du caractère # et s'étendent jusqu'à la fin de la ligne. Bien que le code puisse fonctionner sans commentaires, un code bien commenté est toujours plus maintenable, compréhensible et collaboratif.
 
@@ -225,7 +227,7 @@ Les commentaires en programmation sont des annotations ajoutées au code qui ne 
 print("Hello, world!")
 ```
 
-# Variables
+## Variables
 
 Dans le monde de la programmation, les variables jouent un rôle central et fondamental. Une variable peut être imaginée comme une boîte dans la mémoire de l'ordinateur, où l'on peut stocker, récupérer ou modifier des informations. Chaque variable possède un nom unique qui permet d'identifier et d'accéder à son contenu. De plus, les variables ont des types, tels que entier, chaîne de caractères ou liste, qui déterminent la nature des données qu'elles peuvent contenir. Comprendre le concept de variables est essentiel, car elles servent de pont entre le code et les données, permettant aux programmes d'interagir dynamiquement avec les informations. En maîtrisant les variables, on acquiert la capacité de manipuler des données de manière flexible et puissante, ouvrant la porte à des applications plus complexes et interactives.
 
@@ -243,7 +245,7 @@ nom = "Alice"
 print(f"Hello, {nom}!")
 ```
 
-# Fonctions
+## Fonctions
 
 Les fonctions sont des éléments fondamentaux de la programmation en Python, servant à regrouper des blocs de code pour effectuer une tâche spécifique.
 Elles permettent de structurer et d'organiser le code, le rendant plus lisible et réutilisable.
@@ -277,7 +279,7 @@ En Python, les fonctions peuvent accepter un nombre variable d'arguments, avoir 
 
 Il existe deux types de fonctions:
 
-## Fonctions "builtin"
+### Fonctions "builtin"
 Les fonctions builtin sont des fonctions qui font partie du language lui-même,
 comme par exemple `print()`, `len()` ou encore `type()` qui sont immédiatement à disposition.
 
@@ -304,17 +306,17 @@ elles reviendront se faire connaitre le moment venu.
 ```
 
 
-## Fonctions non builtin
+### Fonctions non builtin
 Les fonctions non-builtin sont toutes les fonctions qui ne sont pas fournies par le langage lui-même,
 mais qui sont définies par vos soins ou exposées par un module que vous importez.
 
 
 
-# Paramètres de fonctions
+## Paramètres de fonctions
 Les fonctions en Python peuvent accepter des arguments, appelés paramètres, qui permettent de passer des informations à la fonction.
 Ces paramètres peuvent être de différents types :
 
-## Paramètres Positionnels
+### Paramètres Positionnels
 Ce sont les paramètres les plus courants. Ils sont définis par leur position dans la définition de la fonction.
 > Paramètres positionnels
 ```python
@@ -322,7 +324,7 @@ def ma_fonction(a, b, c):
     return a + b + c
 ```
 
-## Paramètres par défaut
+### Paramètres par défaut
 Ces paramètres ont une valeur par défaut qui est utilisée si aucune valeur n'est fournie lors de l'appel de la fonction.
 > Paramètres par défaut
 ```python
@@ -330,7 +332,7 @@ def ma_fonction(a, b=5):
     return a + b
 ```
 
-## Paramètres mot-clé
+### Paramètres mot-clé
 Lors de l'appel d'une fonction, vous pouvez spécifier des arguments en utilisant le nom du paramètre, ce qui permet de passer les arguments dans n'importe quel ordre.
 > Paramètres mot-clé
 ```python
@@ -341,7 +343,7 @@ ma_fonction(b=2, c=3, a=1)
 ```
 
 
-## Paramètres arbitraires
+### Paramètres arbitraires
 Si vous ne savez pas combien d'arguments seront passés à votre fonction, vous pouvez utiliser *args pour les paramètres positionnels et **kwargs pour les paramètres mot-clé.
 > Paramètres arbitraires
 ```python
@@ -358,7 +360,7 @@ Si vous ne savez pas combien d'arguments seront passés à votre fonction, vous 
 ```
 
 
-# Types
+## Types
 
 En Python, chaque valeur est associée à un type de données spécifique qui détermine la nature de cette valeur. Les types de données fondamentaux en Python sont :
 
@@ -376,7 +378,7 @@ En Python, chaque valeur est associée à un type de données spécifique qui d�
 Ces types de données sont les briques de base de la programmation en Python.
 Ils permettent aux développeurs de représenter et de manipuler une grande variété d'informations, des simples nombres aux structures de données complexes.
 
-## Truthiness
+### Truthiness
 À ma connaissance,
 tous les langages ont une notion de "truthiness":
 toute valeur de tout type est implicitement vraie ou fausse.
@@ -408,7 +410,7 @@ is empty
 ```
 
 
-## None
+### None
 `None` est un type spécial en Python qui représente l'absence de valeur ou la nullité.
 Il est souvent utilisé pour signifier qu'une variable existe,
 mais qu'elle n'a pas encore été assignée à une valeur spécifique ou pour indiquer qu'une fonction ne renvoie rien.
@@ -424,7 +426,7 @@ True
 >>> 
 ```
 
-# f-string et spécificateurs
+## f-string et spécificateurs
 Depuis peu,
 Python propose une fonctionnalité nommée `f-string` que nous avons utilisé un peu plus haut:
 les chaines de caractères préfixées par `f` sont considérées comme contenant des variables à remplacer.
@@ -459,101 +461,101 @@ print("Mon nom est %s, j'ai %d ans et je mesure %.2f mètres." % (nom, age, tail
 
 
 
-# Opérateurs
+## Opérateurs
 
-## Opérateurs arithmétiques
+### Opérateurs arithmétiques
 
 Ils sont utilisés pour effectuer des opératins mathématiques.
 
-### Addition: +
+#### Addition: +
 ```python
 >>> x = 5 + 3
 >>> x
 8
 ```
 
-### Soustraction: -
+#### Soustraction: -
 ```python
 >>> x = 5 - 3
 >>> x
 2
 ```
 
-### Multiplication: *
+#### Multiplication: *
 ```python
 >>> x = 5 * 3
 >>> x
 15
 ```
 
-### Division: /
+#### Division: /
 ```python
 >>> x = 8 / 2
 >>> x
 4.0
 ```
 
-### Modulo: %
+#### Modulo: %
 ```python
 >>> x = 13 % 12
 >>> x
 1
 ```
 
-### Exponentiation (puissance): **
+#### Exponentiation (puissance): **
 ```python
 >>> x = 2 ** 3
 >>> x
 8
 ```
 
-### Division entière: //
+#### Division entière: //
 ```python
 >>> x = 5 // 3
 >>> x
 1
 ```
 
-## Opérateurs de comparaison
+### Opérateurs de comparaison
 
 Ils sont utilisés pour comparer deux valeurs.
 
-### Égal: ==
+#### Égal: ==
 ```python
 >>> x = 5 == 3
 >>> x
 False
 ```
 
-### Différent: !=
+#### Différent: !=
 ```python
 >>> x = 5 != 3
 >>> x
 True
 ```
 
-### Supérieur: >
+#### Supérieur: >
 ```python
 >>> x = 5 > 3
 >>> x
 True
 ```
 
-### Inférieur: <
+#### Inférieur: <
 ```python
 >>> x = 8 < 2
 >>> x
 False
 ```
 
-### Supérieur ou égal: >=
+#### Supérieur ou égal: >=
 ```python
 >>> x = 5 >= 5
 >>> x
 True
 ```
 
-### Inférieur ou égal: <=
+#### Inférieur ou égal: <=
 ```python
 >>> x = 2 <= 3
 >>> x
@@ -561,24 +563,24 @@ True
 ```
 
 
-## Opérateurs logiques
+### Opérateurs logiques
 Ils sont utilisés pour combiner des expressions conditionnelles.
 
-### And
+#### And
 ```python
 >>> x = 5 > 3 and 5 < 10
 >>> x
 True
 ```
 
-### Or
+#### Or
 ```python
 >>> x = 5 > 3 or 5 > 10
 >>> x
 True
 ```
 
-### Not
+#### Not
 ```python
 >>> x = 5 > 3
 >>> x
@@ -591,10 +593,10 @@ False
 ```
 
 
-## Opérateurs d'affectation
+### Opérateurs d'affectation
 Ils sont utilisés pour assigner des valeurs aux variables.
 
-### =
+#### =
 Assigne une valeur.
 ```python
 >>> x = 5
@@ -602,7 +604,7 @@ Assigne une valeur.
 5
 ```
 
-### +=
+#### +=
 Équivaut à ajouter à la valeur existante,
 `x += 5` équivaut à `x = x + 5`.
 ```python
@@ -611,7 +613,7 @@ Assigne une valeur.
 10
 ```
 
-### -=
+#### -=
 Équivaut à supprimer à la valeur existante.
 ```python
 >>> x -= 1
@@ -619,7 +621,7 @@ Assigne une valeur.
 9
 ```
 
-### *=
+#### *=
 Équivaut à multiplier la valeur existante.
 ```python
 >>> x *= 2
@@ -627,7 +629,7 @@ Assigne une valeur.
 18
 ```
 
-### /=
+#### /=
 Équivaut à diviser la valeur existante.
 ```python
 >>> x /= 2
@@ -635,7 +637,7 @@ Assigne une valeur.
 9.0
 ```
 
-### %=
+#### %=
 Équivaut à appliquer un modulo à la valeur existante.
 ```python
 >>> x = 10
@@ -644,7 +646,7 @@ Assigne une valeur.
 1
 ```
 
-### //=
+#### //=
 Équivaut à appliquer une division entière à la valeur existante.
 ```python
 >>> x = 10
@@ -653,7 +655,7 @@ Assigne une valeur.
 3
 ```
 
-### **=
+#### **=
 Équivaut à appliquer une puissance  à la valeur existante.
 ```python
 >>> x = 2
@@ -662,7 +664,7 @@ Assigne une valeur.
 1024
 ```
 
-## Opérateurs binaires
+### Opérateurs binaires
 
 Ces opérateurs sont particulièrement utiles dans des domaines tels que la programmation de bas niveau,
 la cryptographie,
@@ -672,7 +674,7 @@ Bien que leur utilisation soit moins courante dans la programmation de haut nive
 il est toujours bon de les connaître et de comprendre comment ils fonctionnent.
 
 
-### ET binaire `&`
+#### ET binaire `&`
 Cet opérateur renvoie un nombre dont chaque bit est le résultat de l'opération "ET" bit à bit des opérandes.
 > ET binaire
 ```python
@@ -681,7 +683,7 @@ Cet opérateur renvoie un nombre dont chaque bit est le résultat de l'opératio
 >>> print(x & y)  # 0001 en binaire, soit 1 en décimal
 ```
 
-### OU binaire `|`
+#### OU binaire `|`
 Renvoie un nombre dont chaque bit est le résultat de l'opération "OU" bit à bit des opérandes.
 > OU binaire
 ```python
@@ -690,7 +692,7 @@ Renvoie un nombre dont chaque bit est le résultat de l'opération "OU" bit à b
 >>> print(x | y)  # 0111 en binaire, soit 7 en décimal
 ```
 
-### OU exclusif binaire `^`
+#### OU exclusif binaire `^`
 Renvoie un nombre dont chaque bit est le résultat de l'opération "OU exclusif" bit à bit des opérandes.
 > OU binaire
 ```python
@@ -699,7 +701,7 @@ Renvoie un nombre dont chaque bit est le résultat de l'opération "OU exclusif"
 >>> print(x ^ y)  # 0110 en binaire, soit 6 en décimal
 ```
 
-### Négation binaire `~`
+#### Négation binaire `~`
 Inverse tous les bits du nombre.
 > Négation binaire
 ```python
@@ -707,7 +709,7 @@ Inverse tous les bits du nombre.
 >>> print(~x)  # 1010 en binaire
 ```
 
-### Décalage à gauche `<<`
+#### Décalage à gauche `<<`
 Décale les bits du premier opérande vers la gauche d'un nombre de positions spécifié par le second opérande.
 > Décalage à gauche
 ```python
@@ -715,7 +717,7 @@ Décale les bits du premier opérande vers la gauche d'un nombre de positions sp
 >>> print(x<<1)  # 1000 en binaire, 8
 ```
 
-### Décalage à droite `>>`
+#### Décalage à droite `>>`
 Décale les bits du premier opérande vers la gauche d'un nombre de positions spécifié par le second opérande.
 > Décalage à droite
 ```python
@@ -724,13 +726,13 @@ Décale les bits du premier opérande vers la gauche d'un nombre de positions sp
 ```
 
 
-### Assignations
+#### Assignations
 
 Tous les opérateurs supportent des versions "avec assignation" comme on a pu voir sur les opérateurs arithmétiques:
 `x &= 1`,  `x |= 1`, `x ^= 1`, `x <<= 1` ou encore `x >>= 1`.
 
 
-### À quoi ça peut donc bien servir ?
+#### À quoi ça peut donc bien servir ?
 
 Au delà des cas où les opérations binaires s'imposent à vous,
 parce que vous implémentez une specification où il est explicitement écrit "mettre le 13ème bit à 1",
@@ -787,16 +789,16 @@ et surtout c'est une connaissance qui se transpose à tous les langages.
 
 
 
-# Structures de contrôle et boucles
+## Structures de contrôle et boucles
 
 Les structures de contrôle sont essentielles en programmation car elles permettent de diriger le flux d'exécution d'un programme.
 En Python, comme dans la plupart des langages de programmation, il existe plusieurs structures de contrôle principales.
 
-## Structures de contrôle conditionnelles
+### Structures de contrôle conditionnelles
 
 Elles permettent d'exécuter certains blocs de code en fonction de conditions spécifiques.
 
-### if
+#### if
 Exécute un bloc de code si une condition est vraie.
 
 ```python
@@ -810,7 +812,7 @@ if x == 42:
 
 
 
-### elif
+#### elif
 Vérifie une autre condition si la condition précédente n'est pas vraie.
 
 ```python
@@ -824,7 +826,7 @@ elif x == 43:
 ```
 
 
-### else
+#### else
 Exécute un bloc de code si aucune des conditions précédentes n'est vraie.
 
 ```python
@@ -839,7 +841,7 @@ else:
     print("x n'est égal ni à 42, ni à 43)
 ```
 
-### pass
+#### pass
 Permet de remplacer un bloc de code pour... ne rien faire.
 La plupart du temps,
 il sert à ce que la syntaxe du langage soit respectée "le temps de" finir une implémentation,
@@ -859,9 +861,9 @@ else:
     pass # TODO: à implémenter plus tard
 ```
 
-### match
+#### match
 
-Le mot-clé `match`` a été introduit dans Python 3.10 comme une extension de la capacité de correspondance de motifs (ou "pattern matching") du langage.
+Le mot-clé `match` a été introduit dans Python 3.10 comme une extension de la capacité de correspondance de motifs (ou "pattern matching") du langage.
 Il offre une manière plus expressive et lisible de traiter les structures de données et de prendre des décisions basées sur la forme et le contenu de ces structures.
 
 La correspondance de motifs avec match peut être vue comme une version généralisée et améliorée de l'instruction switch/case présente dans d'autres langages,
@@ -905,7 +907,7 @@ mais nous allons voir encore un exemple qui exploite les variables de capture.
 
 
 
-#### Variables de capture
+##### Variables de capture
 Dans l'exemple de match plus complexe,
 les variables `x` et `y` prennent a valeur de leur position dans la variable `point`.
 
@@ -927,11 +929,11 @@ match point:
 ```
 
 
-## Structures de contrôle de boucle
+### Structures de contrôle de boucle
 
 Elles permettent d'exécuter un bloc de code plusieurs fois.
 
-### for
+#### for
 Parcourt une séquence et exécute un bloc de code pour chaque élément de cette séquence.
 
 ```python
@@ -942,7 +944,7 @@ for i in range(0, 10):
 ```
 
 
-### while
+#### while
 Exécute un bloc de code tant qu'une condition est vraie.
 
 ```python
@@ -954,10 +956,10 @@ while i < 10:
     i = i + 1
 ```
 
-## Structures de contrôle de boucle
+### Structures de contrôle de boucle
 Elles permettent d'altérer le comportement d'une boucle.
 
-### break
+#### break
 Termine la boucle en cours et passe à la suite du programme.
 
 ```python
@@ -969,7 +971,7 @@ for i in range(0, 10):
     print(f"tour de boucle {i}")
 ```
 
-### continue
+#### continue
 Termine la boucle en cours et passe à la suite du programme.
 
 ```python
@@ -981,7 +983,7 @@ for i in range(0, 10):
     print(f"tour de boucle {i}")
 ```
 
-# Pointeurs et références
+## Pointeurs et références
 
 En Python, les concepts de pointeurs et de références sont gérés de manière différente par rapport à des langages comme C ou C++.
 
@@ -1011,7 +1013,7 @@ peu importe que l'on demande ce qu'il y a derrière l'étiquette `a` ou `b`,
 c'est le même contenu modifié.
 
 
-## Absence de pointeurs et passage par référence
+### Absence de pointeurs et passage par référence
 
 Contrairement à des langages comme C ou C++,
 Python n'a pas de pointeurs explicites.
@@ -1041,12 +1043,12 @@ la liste a est modifiée à l'intérieur de la fonction `ajouter_element()` car 
 En Python, il est essentiel de comprendre que les variables sont des références à des objets et que la manipulation de ces références peut avoir des effets sur les objets sous-jacents. Bien que Python n'ait pas de pointeurs explicites, la manière dont il gère les références offre une grande flexibilité tout en évitant les complications associées à la gestion directe de la mémoire.
 
 
-# Allocation et désallocation dynamique
+## Allocation et désallocation dynamique
 
 L'allocation et la désallocation dynamiques sont des concepts essentiels en programmation, permettant de gérer la mémoire utilisée par les applications.
 En Python, ces concepts sont traités de manière quelque peu différente par rapport à des langages de bas niveau comme C ou C++.
 
-## Allocation Dynamique
+### Allocation Dynamique
 
 En Python, l'allocation de mémoire est gérée automatiquement.
 Lorsque vous créez un nouvel objet, Python alloue automatiquement la mémoire nécessaire pour cet objet.
@@ -1061,7 +1063,7 @@ ma_liste = [1, 2, 3, 4, 5]
 mon_dict = {"clé": "valeur"}
 ```
 
-## Désallocation dynamique et garbage collection
+### Désallocation dynamique et garbage collection
 
 La désallocation de mémoire est également gérée automatiquement en Python grâce à un mécanisme appelé "garbage collection" (collecte des déchets).
 Le garbage collector de Python détecte les objets qui ne sont plus référencés par le programme et libère la mémoire qu'ils occupent.
@@ -1081,7 +1083,7 @@ def ma_fonction():
 ma_fonction()
 ```
 
-## Références circulaires
+### Références circulaires
 Une référence circulaire se produit lorsque deux objets (ou plus) se réfèrent mutuellement, créant ainsi un cycle.
 Le garbage collector de Python est capable de détecter et de gérer les références circulaires, évitant ainsi les fuites de mémoire.
 
@@ -1098,7 +1100,7 @@ Le garbage collector de Python est capable de détecter et de gérer les référ
 >>> 
 ```
 
-## Un dernier mot sur la mémoire
+### Un dernier mot sur la mémoire
 
 En Python, les développeurs n'ont généralement pas à se soucier de l'allocation et de la désallocation manuelles de la mémoire, car le langage s'en occupe automatiquement.
 
@@ -1113,9 +1115,9 @@ le développement est simplifié et les bugs de gestion mémoire sont quasi inex
 mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
 
 
-# Exercices
+## Exercices
 
-## exo01.py - input et print
+### exo01.py - input et print
 À l'aide des fonctions builtin `input()` et `print()`,
 écrire un programme qui demande à l'utilisateur d'entrer son prénom et son nombre préféré,
 puis afficher les informations.
@@ -1129,7 +1131,7 @@ Tu t'appelles Gilles et ton nombre préféré est 42.
 $ 
 ```
 
-## exo02.py - boucle for
+### exo02.py - boucle for
 Créer une boucle `for` qui affiche les nombres de 1 à 10.
 
 > exo02.py
@@ -1148,7 +1150,7 @@ $ python exo02.py
 $ 
 ```
 
-## exo03.py - boucle while
+### exo03.py - boucle while
 Créer une boucle `while` qui affiche les nombres de 1 à 10,
 sans afficher le chiffre 3.
 
@@ -1167,7 +1169,7 @@ $ python exo03.py
 $ 
 ```
 
-## exo04.py - puissance de 2
+### exo04.py - puissance de 2
 En important le module `sys`,
 vous aurez accès aux paramètres passés à votre programme au travers du tableau `sys.argv`.
 La fonction builtin `int()` permet de convertir une chaine en nombre,
