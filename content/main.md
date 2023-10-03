@@ -1397,10 +1397,6 @@ class Chat:
 'GAUFRETTE'
 ```
 
-
-
-
-
 ## Encapsulation et visibilité
 
 ### Encapsulation
@@ -1442,6 +1438,19 @@ class Voiture:
         self.marque = marque  # Attribut d'instance
 ```
 
+## Exercices
+
+### exo101.py
+Créer une classe Voiture avec des attributs pour la marque, le modèle et l'année, et une méthode pour afficher ces informations.
+
+### exo102.py
+Ajouter des constructeurs et destructeurs à la classe "Voiture".
+
+### exo103.py
+Implémenter l'encapsulation en rendant les attributs de la classe "Voiture" privés et en utilisant des getters et setters.
+
+
+# Session 3
 
 ## Héritage
 L'héritage est l'un des piliers fondamentaux de la programmation orientée objet.
@@ -1598,14 +1607,5 @@ la communication prendra une forme différente.
 
 ## Exercices
 
-### exo101.py
-Créer une classe Voiture avec des attributs pour la marque, le modèle et l'année, et une méthode pour afficher ces informations.
-
-### exo102.py
-Ajouter des constructeurs et destructeurs à la classe "Voiture".
-
-### exo103.py
-Implémenter l'encapsulation en rendant les attributs de la classe "Voiture" privés et en utilisant des getters et setters.
-
-### exo104.py
+### exo201.py
 Créer une classe "VéhiculeÉlectrique" qui hérite de "Voiture" et ajoute un attribut pour l'autonomie de la batterie.
