@@ -1234,3 +1234,378 @@ Personnellement,
 si je dois faire de la POO,
 j'irai naturellement vers Python _justement_ parce qu'il va permettre d'être pragmatique,
 tout simplement.
+
+
+## Classes, instances et cycle de vie de l'objet
+Les classes permettent de créer de nouveau types à partir de types existants qui sont eux même des classes.
+
+En Python, `int` ou `float` sont des classes,
+`True` et `False` sont des instances de la classe `bool`,
+`None` est une instance de la classe `NoneType` et...
+même la fonction builtin `print()` est une instance de la classe `builtin_function_or_method`.
+
+En Python tout est objet,
+donc creusons un peu ce qu'est une classe, une instance et le cycle de vie des objets.
+
+
+### Classe
+Une classe est un modèle à partir duquel des objets sont créés.
+Elle définit des attributs et des méthodes qui caractérisent tout objet créé à partir de cette classe.
+> classe
+```python
+class Chat:
+    couleur = "noir"
+```
+
+### Instance
+Une instance est un objet individuel créé à partir d'une classe. Chaque instance a ses propres attributs qui peuvent être différents des valeurs par défaut définies dans la classe.
+> instance
+```python
+mon_chat = Chat()
+```
+
+### Cycle de vie de l'objet
+Le cycle de vie d'un objet commence lorsqu'il est créé (instancié) et se termine lorsqu'il est détruit.
+Python gère automatiquement la gestion de la mémoire,
+mais fournit des méthodes spéciales (comme `__init__` et `__del__`) pour initialiser et nettoyer les ressources.
+
+
+## Méthodes, constructeurs et déstructeurs
+
+### Méthodes
+Ce sont des fonctions définies à l'intérieur d'une classe et elles opèrent sur des données membres de cette classe.
+> Méthodes
+```python
+class Chat:
+    def miauler(self):
+        print("Miaou!")
+```
+
+### Constructeurs (`__init__`)
+C'est une méthode spéciale qui est automatiquement appelée lors de la création d'une instance. Elle est généralement utilisée pour initialiser les attributs.
+
+> Constructeur
+```python
+class Chat:
+    def __init__(self, nom):
+        self.nom = nom
+```
+
+### Destructeurs (`__del__`)
+Bien que rarement utilisé en Python (car Python a un ramasse-miettes),
+c'est une méthode qui est appelée lorsque l'objet est sur le point d'être détruit.
+
+> Destructeur
+```python
+class Chat:
+    def __del__(self):
+        print("L'objet chat est détruit.")
+```
+
+### Getters et setters
+Les getters et setters sont des méthodes utilisées en programmation orientée objet pour contrôler l'accès aux attributs d'un objet.
+
+- Getter : C'est une méthode qui permet d'obtenir la valeur d'un attribut privé. Au lieu d'accéder directement à l'attribut, vous utilisez le getter pour le récupérer. Cela permet d'encapsuler (ou cacher) la représentation interne de l'attribut.
+
+- Setter : C'est une méthode qui permet de définir ou de modifier la valeur d'un attribut privé. Au lieu de modifier directement l'attribut, vous utilisez le setter. Cela permet d'ajouter des contrôles ou des validations lors de la modification de l'attribut.
+
+
+> Getter & Setter
+```python
+class Chat:
+    def __init__(self, value):
+        self._nom = value
+
+    def get_nom(self):
+        return self._nom
+
+    def set_nom(self, value):
+        if not value:
+            raise ValueError("Le nom ne peut pas être vide.")
+        self._nom = value
+
+>>> c = Chat('Ragazza')
+>>> c.get_nom()
+'Ragazza'
+>>> c.set_nom('Gaufrette')
+>>> c.get_nom()
+'Gaufrette'
+```
+
+En Python, les getters et setters sont souvent définis à l'aide des propriétés (`property`),
+nous verrons les annotations plus tard,
+c'est juste une manière de montrer qu'il y a plusieurs approches pour cacher un attribut privé.
+
+> Getter & Setter pour les fortiches
+```python
+class Chat:
+    def __init__(self, value):
+        self._nom = value
+
+    @property
+    def nom(self):
+        return self._nom
+
+    @nom.setter
+    def nom(self, value):
+        if not value:
+            raise ValueError("Le nom ne peut pas être vide.")
+        self._nom = value
+
+>>> c = Chat('Ragazza')
+>>> c.nom
+'Ragazza'
+>>> c.nom = 'Gaufrette'
+>>> c.nom
+'Gaufrette'
+```
+
+Dans le premier exemple,
+au lieu d'accéder directement à l'attribut _marque,
+on utilise les méthodes get_nom (getter) et set_nom (setter) pour obtenir et définir sa valeur,
+tout en ajoutant une validation dans le setter.
+
+Dans le second,
+on utilise une fonctionnalité avancée,
+les annotations,
+pour exposer une méthode comme un attribut et s'en servir comme tel.
+L'avantage dans ce cas est que la méthode peut embarquer de la logique,
+puisqu'il ne sá git pas d'un vrai attribut mais d'une fonction,
+elle pourrait convertir tout en majuscule ou minuscule de manière transparente:
+
+> Getter & Setter pour les fortiches avec logique dans le getter
+```python
+class Chat:
+    def __init__(self, value):
+        self._nom = value
+
+    @property
+    def nom(self):
+        return self._nom.upper
+
+    @nom.setter
+    def nom(self, value):
+        if not value:
+            raise ValueError("Le nom ne peut pas être vide.")
+        self._nom = value
+
+>>> c = Chat('Ragazza')
+>>> c.nom
+'RAGAZZA'
+>>> c.nom = 'Gaufrette'
+>>> c.nom
+'GAUFRETTE'
+```
+
+
+
+
+
+## Encapsulation et visibilité
+
+### Encapsulation
+C'est le regroupement des données et des méthodes qui opèrent sur ces données en une seule unité (classe). Cela permet de cacher les détails de mise en œuvre.
+
+### Visibilité
+En Python, la visibilité des membres de la classe est déterminée par des conventions de nommage.
+Un nom commençant par un underscore (comme _privé) est traité comme "protégé",
+et un nom commençant par deux underscores (comme __privé) est traité comme "privé".
+
+Dans d'autres langages,
+cette notion de visibilité est stricte et implique l'utilisation de mots clefs pour indiquer si un membre est public, privé ou protégé,
+mais en Python c'est une convention d'écriture:
+on peut décider de passer outre si l'on veut vraiment.
+
+Cette visibilité s'applique aussi bien aux variables qu'aux méthodes,
+de fait la méthode `__init__` peut être considérée comme "privée" puisqu'elle débute par '__'.
+
+
+> Visibilité
+```python
+class Voiture:
+    def __init__(self):
+        self.marque = "Toyota"  # Public
+        self._secret = "12345"  # Protégé
+        self.__code_privé = "abcd"  # Privé
+```
+
+## Membre de classe
+Les membres de classe (ou variables de classe) sont des attributs qui sont définis au niveau de la classe, et non au niveau de l'instance.
+Ils sont partagés par toutes les instances de la classe.
+
+> Membre de Classe
+```python
+class Voiture:
+    nombre_de_roues = 4  # Membre de classe
+
+    def __init__(self, marque):
+        self.marque = marque  # Attribut d'instance
+```
+
+
+## Héritage
+L'héritage est l'un des piliers fondamentaux de la programmation orientée objet.
+Il permet à une classe (appelée sous-classe ou classe dérivée) d'hériter des attributs et des méthodes d'une autre classe (appelée classe parent ou classe de base).
+L'héritage vise à promouvoir la réutilisation du code et à établir une relation de type "est un" entre la sous-classe et la classe parent.
+
+En Python, l'héritage est réalisé en passant la classe parent comme un paramètre lors de la définition de la sous-classe.
+
+
+
+
+### Héritage simple
+Python supporte l'héritage simple où une sous-classe peut hériter d'une seule classe parent.
+
+> Héritage simple
+```python
+class Animal:
+    def __init__(self, nom):
+        self.nom = nom
+
+class Chien(Animal):
+    pass
+
+class Chat(Animal):
+    pass
+
+>>> animal1 = Chien("Rex")
+>>> animal2 = Chat("Gaufrette")
+>>>
+```
+Dans cet exemple,
+`Chien` et `Chat` sont des sous-classes de `Animal`,
+ils ont tous deux un nom.
+
+### Héritage multiple
+Contrairement à de nombreux autres langages, Python supporte l'héritage multiple, où une sous-classe peut hériter de plusieurs classes parent.
+
+> Héritage multiple
+```python
+class Animal:
+    def __init__(self, nom):
+        self.nom = nom
+
+class Aquatique:
+    def plouf(self):
+        return "plouf !"
+
+class Chien(Animal):
+    pass
+
+class Chat(Animal):
+    pass
+
+class Poisson(Animal, Aquatique):
+    pass
+
+>>> animal1 = Chien("Rex")
+>>> animal2 = Chat("Gaufrette")
+>>> animal3 = Poisson("Bulle")
+>>> animal3.plouf()
+"plouf !"
+```
+Dans cet exemple,
+`Chien` et `Chat` sont des sous-classes de `Animal`...
+mais `Poisson` est une sous-classe de `Animal` ET `Aquatique`.
+
+En réalité,
+ce n'est pas un très bon découpage,
+c'était simplement pour avoir un exemple facile.
+
+Le GROS du travail en POO est précisément se travail de découpe:
+regrouper dans des classes les propriétés communes des objets que l'on manipule,
+trouver ceux qui sont spécifiques et méritent leurs propres classes,
+tout en jonglant avec un niveau d'abstractin suffisant mais pas non plus démesuré:
+
+Peut-être qu'il aurait été intéressant d'introduire une classe `Mammifère` ici,
+peut-être même qu'il aurai été intéressant de différencier le mon `Animal` du monde `Végétal` avec une classe parent `Organisme`.
+Est-ce qu'il faut remonter jusqu'à avoir une classe `Cellule`, une classe `Atome`, ...
+
+Vous saisissez la difficulté de la POO:
+le système d'héritage est très puissant et permet de décrire les choses de manière précise,
+mais il faut jauger correctement le niveau de détail pour ne pas s'embourber dans 50 abstractions inutiles.
+
+
+### Fonction super
+En Python,
+la fonction `super()` est utilisée pour appeler une méthode de la classe parent.
+Elle est souvent utilisée dans le constructeur (__init__) pour initialiser la partie parent de l'objet.
+```python
+class Animal:
+    def __init__(self, nom, espece):
+        self.nom = nom
+        self.espece = espece
+
+class Chien(Animal):
+    def __init__(self, nom, race):
+        super().__init__(nom, "chien")
+        self.race = race
+
+>>> rex = Chien("Rex", "Berger Allemand")
+```
+
+On pourrait initialiser `self.nom` et `self.espece` dans le constructeur de `Chien`,
+mais alors on risquerai de passer à côté d'autres initialisations si nous n'avions pas écrit `Animal` nous même et que son constructeur faisait autre chose,
+ou encore si `Animal` venait à évoluer à l'avenir et que nous ne répliquions pas ses changements dans toutes les sous-classe.
+
+La bonne pratique est d'appeler `super()` pour initialiser les champs du parent correctement.
+
+
+
+### Redéfinition de méthodes
+Une sous-classe peut redéfinir une méthode héritée de la classe parent pour fournir une implémentation spécifique.
+
+> Redéfinition de méthodes
+```python
+class Animal:
+    def __init__(self, nom):
+        self.nom = nom
+
+    def communiquer(self):
+        pass
+
+class Aquatique:
+    def nager(self):
+        pass
+
+class Chien(Animal):
+    def communiquer(self):
+        return f"{self.nom} dit Woof!"
+
+class Chat(Animal):
+    def communiquer(self):
+        return f"{self.nom} dit Miaou!"
+
+class Poisson(Animal, Aquatique):
+    def communiquer(self):
+        return f"{self.nom} dit Miaou!"
+    
+    def nager(self):
+        return f"{self.nom} fait des brasses"
+
+```
+
+Dans l'exemple qui ouvre la question de l'héritage,
+la classe Animal fournit une méthode `communiquer()` qui ne fait rien (`pass`).
+Les classes Chien et Chat fournissent héritent chacunes de la classe Animal,
+mais redéfinissent la méthode `communiquer` avec une implémentation qui leur est propre.
+C'est ce que l'on appelle le `polymorphisme`,
+la faculté pour des objets de se comporter de façon différente en fonction de leur forme (poly-morphisme):
+tous les animaux communiquent,
+mais selon la spécialisation de l'animal,
+la communication prendra une forme différente.
+
+
+## Exercices
+
+### exo101.py
+Créer une classe Voiture avec des attributs pour la marque, le modèle et l'année, et une méthode pour afficher ces informations.
+
+### exo102.py
+Ajouter des constructeurs et destructeurs à la classe "Voiture".
+
+### exo103.py
+Implémenter l'encapsulation en rendant les attributs de la classe "Voiture" privés et en utilisant des getters et setters.
+
+### exo104.py
+Créer une classe "VéhiculeÉlectrique" qui hérite de "Voiture" et ajoute un attribut pour l'autonomie de la batterie.
