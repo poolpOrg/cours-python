@@ -857,3 +857,72 @@ il les fait à votre place,
 c'est à double tranchant:
 le développement est simplifié et les bugs de gestion mémoire sont quasi inexistants...
 mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
+
+
+# Exercices
+
+## exo1.py - input et print
+À l'aide des fonctions builtin `input()` et `print()`,
+écrire un programme qui demande à l'utilisateur d'entrer son prénom et son nombre préféré,
+puis afficher les informations.
+
+> exo1.py
+```sh
+$ python exo1.py
+Quel est ton prénom ? Gilles
+Quel est ton nombre préféré ? 42
+Tu t'appelles Gilles et ton nombre préféré est 42.
+$ 
+```
+
+## exo2.py - boucle for
+Créer une boucle `for` qui affiche les nombres de 1 à 10.
+
+> exo2.py
+```sh
+$ python exo2.py
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+$ 
+```
+
+## exo3.py - boucle while
+Créer une boucle `while` qui affiche les nombres de 1 à 10,
+sans afficher le chiffre 3.
+
+> exo3.py
+```sh
+$ python exo3.py
+1
+2
+4
+5
+6
+7
+8
+9
+10
+$ 
+```
+
+## exo4.py - puissance de 2
+En important le module `sys`,
+vous aurez accès aux paramètres passés à votre programme au travers du tableau `sys.argv`.
+La fonction builtin `int()` permet de convertir une chaine en nombre,
+donc `int("10")` retourne `10`.
+Créer une fonction `puissance(n)` qui retourne 2 à la puissance de `n`.
+
+> exo4.py
+```sh
+$ python exo4.py
+1024
+$ 
+```
