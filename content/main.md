@@ -1182,3 +1182,55 @@ $ python exo04.py
 1024
 $ 
 ```
+
+# Session 2
+Dans la première session,
+nous avons survolé le langage et sa syntaxe de manière générale.
+
+Dans cette session,
+nous allons aborder les fonctionnalités orientées objet du langage.
+
+
+## La Programmation Orientée Objet (POO) en très très résumé
+La POO est un paradigme de programmation,
+une façon de se représenter les problèmes d'une certaine manière,
+au même titre que la programmation procédurale,
+ou la programmation fonctionnelle.
+
+La POO est une façon d'écrire des programmes en pensant les différentes composantes de ce programme en termes d'"objets",
+un peu comme si vous organisiez une boîte à outils.
+Chaque objet est comme un outil spécifique ayant une fonction précise (comme un marteau ou une vis).
+Ces objets peuvent avoir des caractéristiques (par exemple, la couleur du marteau) et des actions qu'ils peuvent effectuer (comme clouer avec le marteau).
+En regroupant les caractéristiques et les actions au sein d'objets,
+cela rend le code plus organisé,
+plus clair et plus facile à gérer.
+
+La POO repose fortement sur la notion d'objets,
+avec leurs caractéristiques et leurs actions,
+mais aussi fortement sur la relation que les objets ont les uns avec les autres comme nous allons le voir.
+
+
+## Python est-il un bon langage pour la programmation orientée objet ?
+Lorsqu'il est question de POO,
+il est courant d'y associer immédiatement le Java ou le C++ tant le paradigme objet est au coeur de ces langages.
+
+Dans la pratique,
+tout paradigme est problématique dans son excès et la POO n'est pas un cas à part.
+
+Lorsque l'on suit tous les préceptes de la POO à la lettre,
+le code est théoriquement très élégant mais l'on peut se perdre dans des abstractions et ce que l'on appelle souvent l'over-engineering,
+monter une solution beaucoup plus complexe que ce qu'elle a besoin d'être:
+les abstractions s'empilent les unes sur les autres,
+on comprends à la lecture du code ce qu'il est censé faire en théorie,
+mais on perds le fil de ce qu'il se passe en pratique au travers des différentes couches.
+La POO demande un certain niveau d'expertise pour produire quelque chose de proprement élégant.
+
+Python est un très bon compromis car il permet la POO mais sans imposer toute la théorie rigide.
+Il est possible de respecter strictement les préceptes de la POO,
+mais il est aussi possible de s'en écarter par moment,
+ce qui permet de trouver l'équilibre entre code proprement découpé et lasagne d'abstractions.
+
+Personnellement,
+si je dois faire de la POO,
+j'irai naturellement vers Python _justement_ parce qu'il va permettre d'être pragmatique,
+tout simplement.
