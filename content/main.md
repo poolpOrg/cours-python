@@ -1460,8 +1460,6 @@ L'héritage vise à promouvoir la réutilisation du code et à établir une rela
 En Python, l'héritage est réalisé en passant la classe parent comme un paramètre lors de la définition de la sous-classe.
 
 
-
-
 ### Héritage simple
 Python supporte l'héritage simple où une sous-classe peut hériter d'une seule classe parent.
 
@@ -1605,7 +1603,79 @@ mais selon la spécialisation de l'animal,
 la communication prendra une forme différente.
 
 
+## Classes abstraites
+Les classes abstraites sont des classes qui ne peuvent pas être instanciées directement:
+elles servent de base pour d'autres classes.
+
+Une classe abstraite peut contenir des méthodes abstraites,
+c'est-à-dire des méthodes qui sont déclarées mais qui n'ont pas d'implémentation dans la classe abstraite elle-même.
+Les classes qui héritent de classes abstraites sont tenues de fournir une implémentation pour ces méthodes abstraites.
+
+En Python,
+le module `abc` (pour "Abstract Base Class") fournit les mécanismes nécessaires pour définir des classes abstraites et des méthodes abstraites.
+> classe abstraite
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+
+    def __init__(self, nom):
+        self.nom = nom
+
+    @abstractmethod
+    def son(self):
+        pass
+
+class Chien(Animal):
+
+    def son(self):
+        return f"{self.nom} aboie"
+
+class Chat(Animal):
+
+    def son(self):
+        return f"{self.nom} miaule"
+```
+
+Dans cet exemple :
+
+- Animal est une classe abstraite car elle hérite de ABC et contient une méthode abstraite son.
+- Vous ne pouvez pas créer une instance directe de Animal car c'est une classe abstraite.
+- Les classes Chien et Chat héritent de Animal et fournissent une implémentation concrète de la méthode son.
+- Vous pouvez créer des instances de Chien et Chat car elles ne sont pas abstraites et ont implémenté toutes les méthodes abstraites de leur classe parent.
+
+
+### Pourquoi utiliser des classes abstraites ?
+- Forcer l'implémentation : Elles permettent de définir un ensemble de méthodes que toutes les sous-classes doivent impérativement implémenter.
+- Réutilisation du code : Elles peuvent également contenir du code concret que toutes les sous-classes peuvent utiliser, évitant ainsi la duplication de code.
+- Conception : Elles fournissent un modèle clair pour la structure future des sous-classes, facilitant la conception orientée objet.
+
+En résumé, les classes abstraites en Python permettent de définir un "contrat" que toutes les sous-classes doivent respecter, tout en offrant une structure et une réutilisation du code.
+
+## Classes concrètes
+Ça va être rapide...
+
+Dans notre exemple précédent,
+`Chien` et `Chat` sont des classes concrètes car elles implémentent le contrat d'une classe abstraite et peuvent être instanciés.
+
+
+
 ## Exercices
 
 ### exo201.py
-Créer une classe "VéhiculeÉlectrique" qui hérite de "Voiture" et ajoute un attribut pour l'autonomie de la batterie.
+Créer une classe Vehicule qui décrire les propriétés générales d'un Véhicule
+
+### exo202.py
+Créer une classe Bicyclette qui hérite de Véhicule et possède des attributs et méthodes spécifiques à ce type de véhicule
+
+### exo203.py
+Créer une classe Voiture qui hérite de Véhicule et possède des attributs et méthodes spécifiques à ce type de véhicule
+
+### exo203.py
+Créer une classe Moto qui hérite de Véhicule et possède des attributs et méthodes spécifiques à ce type de véhicule
+
+### exo204.py
+Implémenter le polymorphisme en créant une méthode `klaxon()` pour tous ces véhicules produisant un son différent.
+
+### exo205.py
+Comment introduiriez-vous la notion de véhicule électrique ?
