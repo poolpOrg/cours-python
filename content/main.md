@@ -5,18 +5,130 @@ title: API Reference
 
 # Introduction
 
-Python est un langage de programmation de haut niveau, interprété et polyvalent. Créé par Guido van Rossum et lancé pour la première fois en 1991, il est conçu pour être simple à lire et à écrire, grâce à une syntaxe claire et épurée. Voici quelques-unes de ses particularités :
+Python est un langage de programmation de haut niveau, interprété et polyvalent.
+
+Créé par Guido van Rossum et lancé pour la première fois en 1991, il est conçu pour être simple à lire et à écrire, grâce à une syntaxe claire et épurée.
+
+Voici quelques-unes de ses particularités :
 
 - Lisible : Python privilégie une syntaxe claire et lisible, rendant le code plus compréhensible.
 - Polyvalent : Il est utilisé dans de nombreux domaines, allant du développement web à la science des données, en passant par l'automatisation et le développement de jeux.
-- Bibliothèques Riches : Python possède une vaste bibliothèque standard, et il existe de nombreux packages tiers disponibles pour presque toutes les applications imaginables.
-- Dynamiquement Typé : Pas besoin de déclarer le type de variable à l'avance; le type est déterminé au moment de l'exécution.
+- Bibliothèques riches : Python possède une vaste bibliothèque standard, et il existe de nombreux packages tiers disponibles pour presque toutes les applications imaginables.
+- Dynamiquement typé : Pas besoin de déclarer le type de variable à l'avance; le type est déterminé au moment de l'exécution.
 - Interprété : Python est un langage interprété, ce qui signifie qu'il n'est pas nécessaire de le compiler avant de l'exécuter.
-- Communauté Active : La communauté Python est vaste et active, offrant une abondance de ressources, de tutoriels et de soutien.
+- Communauté active : La communauté Python est vaste et active, offrant une abondance de ressources, de tutoriels et de soutien.
 
-Python est souvent recommandé comme premier langage de programmation pour les débutants en raison de sa simplicité. Cependant, ne vous y trompez pas, sa puissance et sa flexibilité en font un excellent choix pour les projets professionnels de grande envergure.
+Python est souvent recommandé comme premier langage de programmation pour les débutants en raison de sa simplicité...
+mais ne vous y trompez pas: sa puissance et sa flexibilité en font un excellent choix pour les projets professionnels de grande envergure.
 
-Que vous soyez un novice en programmation ou un développeur expérimenté, Python a quelque chose à offrir.
+
+# Un langage interprété ?
+
+En quelques mots:
+
+- Interprété : Le code est exécuté ligne par ligne directement par un interpréteur au moment de l'exécution. Pas de phase de compilation séparée. Exemple : Python.
+
+- Compilé : Le code source est transformé en code machine par un compilateur avant l'exécution. Le résultat est un fichier exécutable. Exemple : C, C++.
+
+En bref, les langages compilés sont transformés en code machine avant l'exécution,
+tandis que les langages interprétés sont exécutés directement par un interpréteur au moment de l'exécution.
+Les premiers sont plus rapide car le code machine n'est créé qu'une fois et compris directement par le processeur,
+les seconds sont pus lents car le code source est réinterprété à chaque exécution et doit être traduit en instructions que le processeur comprends.
+
+Il vaut mieux un langage compilé alors ?
+Pourquoi on fait du Python ?
+
+Déjà parce que la plupart des langages compilés sont sensiblement complexe en comparaison aux langages interprétés,
+et le gain à l'exécution est souvent le résultat d'un cycle de développement plus long.
+Ensuite, parce que les performances des langages interprétés sont largement suffisantes dans une écrasante majorité de cas,
+tout le monde ne fait pas du trading haute-fréquence ou de l'embarqué temps-réel.
+Enfin, parce que la limite entre interprété et compilé était très nette il y a vingt ans, mais beaucoup moins aujourd'hui.
+
+En pratique,
+la plupart des langages interprétés aujourd'hui sont compilés pour une machine virtuelle,
+Python n'est pas vraiment interprété ligne par ligne mais il est compilé pour la PVM (Python Virtual Machine).
+
+- Lorsque vous exécutez un script Python, le code source .py est d'abord compilé en bytecode,
+Ce bytecode est une représentation de bas niveau, condensée, indépendante de la plateforme, du code source.
+
+- Ce bytecode est ensuite écrit dans un fichier .pyc qui est stocké dans un dossier __pycache__.
+Cela permet d'accélérer les exécutions ultérieures du script, car le code n'a pas besoin d'être recompilé à moins qu'il n'ait été modifié.
+
+- La machine virtuelle Python (PVM) exécute ensuite ce bytecode, ligne par ligne.
+
+Le bytecode Python n'est pas du code machine natif (comme celui produit pour les langages compilés comme C ou C++).
+Au lieu de cela, il est conçu pour être exécuté par l'interpréteur Python, ce qui permet à Python de conserver sa portabilité entre différentes plateformes.
+
+Les performances sont nécessairement en dessous d'un programme compilé en code natif,
+puisque le bytecode va ensuite devoir être interprété en instructions natives,
+mais une interprétation de bytecode est sensiblement plus rapide qu'une interprétation ligne à ligne.
+
+Notez qu'il y a actuellement un projet en cours de développement,
+le projet Mojo,
+qui vise à produire un compilateur capable de convertir du Python en code natif:
+on aurai alors les performances d'un langage comme C++ mais avec la simplicité de Python.
+
+
+# Syntaxe
+
+Nous n'allons pas voir tous les détails de la syntaxe d'un coup,
+on va pouvoir les découvrir progressivement au fur et à mesure que le cours avance,
+mais voici quelques spécificités pour pouvoir commencer à comprendre les premiers exemples.
+
+
+## Indentation
+Contrairement à de nombreux autres langages, Python utilise l'indentation (espaces ou tabulations) pour délimiter les blocs de code.
+Cela rend le code Python propre et lisible.
+> indentation
+```python
+if True:
+    print("Ceci est vrai.")
+else:
+    print("Ceci est faux.")
+```
+
+## Commentaires
+Les commentaires en Python commencent par le symbole #. Tout ce qui suit ce symbole sur la même ligne est considéré comme un commentaire.
+> commentaires
+```python
+# Ceci est un commentaire
+print("Ceci n'est pas un commentaire.")  # Mais ceci en est un.
+```
+
+## Variables
+En Python, les variables n'ont pas besoin d'être déclarées avec un type spécifique. Vous pouvez simplement les assigner à une valeur.
+> Variables
+```python
+a = 10
+b = "Bonjour"
+c = 3.14
+```
+
+Elles peuvent aussi changer de type en cours de route:
+> Changement de type en cours de route
+```python
+a = 10
+a = "Bonjour"
+```
+
+## Instructions
+Les instructions sont exécutées de haut en bas.
+Vous pouvez utiliser des points-virgules pour séparer plusieurs instructions sur une seule ligne, bien que cela ne soit pas courant en Python.
+> instructions
+```python
+x = 5
+y = 10
+z = 20; total = x + y + z
+```
+
+## Importation de modules
+Python possède une riche bibliothèque standard, et vous pouvez également utiliser des bibliothèques tierces. Pour accéder aux fonctions d'un module, vous devez l'importer.
+> import
+```python
+import math
+racine = math.sqrt(16)  # Utilise la fonction sqrt du module math
+```
+
 
 
 # Les points d'entrées
