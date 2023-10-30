@@ -1113,4 +1113,3 @@ il les fait à votre place,
 c'est à double tranchant:
 le développement est simplifié et les bugs de gestion mémoire sont quasi inexistants...
 mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
-
