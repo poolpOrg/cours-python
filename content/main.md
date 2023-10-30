@@ -50,6 +50,70 @@ mais ne vous y trompez pas: sa puissance et sa flexibilité en font un excellent
 
 # Session 1
 
+## Installation de Python
+
+Pour installer Python, suivez les étapes ci-dessous en fonction de votre système d'exploitation:
+
+### Windows
+
+Rendez-vous sur le site officiel de Python: [python.org](https://python.org)
+
+Téléchargez l'installateur pour Windows.
+
+Exécutez l'installateur et suivez les instructions à l'écran.
+
+Assurez-vous de cocher la case "Add Python to PATH" lors de l'installation.
+
+### MacOS
+
+Utilisez Homebrew: `brew install python3`
+Ou téléchargez l'installateur depuis [python.org](https://python.org)
+
+
+### Linux / BSD
+Python est généralement préinstallé sur la plupart des distributions Linux.
+Sinon, utilisez le gestionnaire de paquets de votre distribution pour l'installer.
+
+
+## Gestionnaire de paquets pour Python
+`pip` est le gestionnaire de paquets standard pour Python.
+
+Il permet aux développeurs d'installer et de gérer des bibliothèques et des dépendances supplémentaires qui ne sont pas incluses dans la bibliothèque standard de Python.
+
+Avec `pip`, il est facile d'ajouter des fonctionnalités à vos projets en installant des paquets depuis le Python Package Index (PyPI).
+
+Pour installer un paquet, il suffit d'utiliser la commande `pip install nom_du_paquet`.
+
+
+De plus, pip offre d'autres fonctionnalités utiles comme la mise à jour des paquets (`pip install --upgrade nom_du_paquet`),
+la désinstallation (`pip uninstall nom_du_paquet`) et la liste des paquets installés (`pip list`).
+
+Il est essentiel pour tout développeur Python de se familiariser avec pip afin de tirer pleinement parti de l'écosystème riche et varié des bibliothèques Python disponibles.
+
+
+## Mise en place d'un environnement virtuel
+Un environnement virtuel est un espace isolé où vous pouvez installer des paquets sans affecter le reste de votre système.
+
+Pour créer un environnement virtuel:
+
+- Installez virtualenv: `pip install virtualenv`
+- Créez un environnement virtuel: `virtualenv mon_env`
+- Activez l'environnement:
+    - Windows: `mon_env\Scripts\activate`
+    - MacOS/Linux/BSD: `source mon_env/bin/activate`
+
+Pour désactiver l'environnement, tapez simplement: `deactivate`
+
+
+## La documentation officielle
+
+Lorsqu'il s'agit de maîtriser Python ou de résoudre des problèmes complexes, la documentation officielle de Python est inestimable.
+
+Accessible sur [python.org](https://python.org), cette documentation est exhaustive, à jour et couvre chaque aspect du langage.
+Elle offre des explications détaillées, des exemples pertinents et des conseils pratiques pour chaque fonction, module ou concept.
+Plutôt que de s'appuyer uniquement sur des forums ou des ressources tierces, tout développeur Python devrait prendre l'habitude de consulter la documentation officielle. Non seulement elle fournit des informations précises, mais elle permet également de comprendre les meilleures pratiques et les intentions originales des concepteurs du langage. En bref, la documentation officielle de Python est un outil indispensable et le meilleur ami de tout développeur Python sérieux.
+
+
 ## Un langage interprété ?
 
 En quelques mots:
@@ -236,9 +300,6 @@ et vous pouvez faire vos propres modules qui vous permetteront de réutiliser le
 
 
 
-
-
-
 ## Commentaires
 
 Les commentaires en programmation sont des annotations ajoutées au code qui ne sont pas exécutées lors de son fonctionnement. Ils sont essentiels pour plusieurs raisons. Tout d'abord, ils permettent au développeur d'expliquer son raisonnement, de décrire la fonction d'un segment de code ou de donner des informations sur la manière dont une partie spécifique du programme fonctionne. Cela est particulièrement utile pour les équipes de développement, car cela facilite la compréhension du code par d'autres membres. De plus, les commentaires peuvent servir à désactiver temporairement certaines parties du code sans les supprimer, ce qui est pratique lors du débogage. En Python, les commentaires sont précédés du caractère # et s'étendent jusqu'à la fin de la ligne. Bien que le code puisse fonctionner sans commentaires, un code bien commenté est toujours plus maintenable, compréhensible et collaboratif.
@@ -403,6 +464,28 @@ En Python, chaque valeur est associée à un type de données spécifique qui d�
 
 Ces types de données sont les briques de base de la programmation en Python.
 Ils permettent aux développeurs de représenter et de manipuler une grande variété d'informations, des simples nombres aux structures de données complexes.
+
+
+### Listes de compréhension
+Les listes de compréhension sont une manière concise de créer des listes ou des dictionnaires.
+
+Listes: `[expression for item in iterable if condition]`
+> List comprehension
+```python
+>>> x = [x**2 for x in range(10) if x%2 == 0]
+>>> x
+[0, 4, 16, 36, 64]
+>>>
+```
+
+Dictionnaires: `{key: value for item in iterable if condition}`
+> Dict comprehension
+```python
+>>> x = {x: x**2 for x in (2, 3, 4)}
+>>> x
+{2: 4, 3: 9, 4: 16}
+>>> 
+```
 
 ### Truthiness
 À ma connaissance,
@@ -813,6 +896,17 @@ et surtout c'est une connaissance qui se transpose à tous les langages.
 
 
 
+### If ternaire
+
+L'`if ternaire` est une manière concise d'écrire une condition if/else.
+
+> if ternaire
+```python
+>>> x = 5
+>>> y = "plus grand" if x > 3 else "plus petit"
+>>> y
+'plus grand'
+```
 
 
 ## Structures de contrôle et boucles
@@ -1139,3 +1233,164 @@ il les fait à votre place,
 c'est à double tranchant:
 le développement est simplifié et les bugs de gestion mémoire sont quasi inexistants...
 mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
+
+
+## Paramètres passés au `main` via la ligne de commande
+Lors de l'exécution d'un script Python depuis la ligne de commande,
+il est courant de vouloir passer des arguments ou des paramètres au programme.
+
+Ces arguments sont accessibles dans le script via le module `sys` et la liste `sys.argv`.
+
+Le premier élément,
+`sys.argv[0]`,
+est toujours le nom du script lui-même, tandis que les arguments suivants sont stockés aux indices suivants.
+
+Par exemple, en exécutant`python mon_script.py arg1 arg2`,
+`sys.argv[1]` contiendra `"arg1"` et `sys.argv[2]` contiendra `"arg2"`.
+
+
+> paramètres de la ligne de commande
+```sh
+import sys
+
+if __name__ == "__main__":
+    for i, arg in enumerate(sys.argv):
+        print(f"Argument {i}: {arg}")
+```
+
+
+## Entrées/sorties
+Les opérations d'entrée/sortie (I/O) sont fondamentales en informatique.
+
+Elles permettent à un programme d'interagir avec le monde extérieur, que ce soit pour recevoir des données (entrée) ou pour envoyer des résultats (sortie).
+
+Ces interactions peuvent se faire via divers moyens, tels que le clavier, la souris, l'écran, les fichiers, ou même les réseaux.
+
+En Python, les fonctions de base pour les I/O incluent `input()` pour lire une chaîne de caractères depuis le clavier et `print()` pour afficher du texte à l'écran.
+
+La manipulation de fichiers, comme l'ouverture, la lecture et l'écriture, est également une forme d'I/O.
+
+Comprendre et maîtriser les I/O est essentiel pour tout développeur, car cela permet de créer des programmes interactifs et dynamiques qui peuvent traiter des données, les stocker et les présenter à l'utilisateur de manière efficace.
+
+## Manipulation de fichiers en Python
+La manipulation de fichiers est une tâche courante en programmation.
+
+Python offre des outils simples et efficaces pour lire et écrire des fichiers.
+
+Pour ouvrir un fichier, utilisez la fonction `open()`,
+qui retourne un objet fichier.
+Les modes d'ouverture les plus courants sont 'r' pour la lecture et 'w' pour l'écriture, 'a' pour l'ajout.
+
+Une fois le fichier ouvert, vous pouvez utiliser les méthodes `read()` pour lire son contenu ou `write()` pour écrire dedans.
+Il est crucial de toujours fermer le fichier après l'avoir utilisé avec la méthode `close()`` pour libérer les ressources.
+
+
+> Lecture et écriture dans un fichier
+```python
+# Lire un fichier
+fichier = open('mon_fichier.txt', 'r')
+contenu = fichier.read()
+print(contenu)
+fichier.close()
+
+# Écrire dans un fichier
+fichier = open('mon_fichier.txt', 'w')
+fichier.write("Bonjour, monde!")
+fichier.close()
+```
+
+
+## Context managers
+Les context managers permettent de gérer efficacement les ressources,
+comme les fichiers ou les connexions réseau. Ils sont généralement utilisés avec l'instruction `with`.
+
+> Context manager
+```python
+with open('mon_fichier.txt', 'r') as fichier:
+    contenu = fichier.read()
+```
+
+> Lecture de fichier ligne à ligne avec un context manager
+```python
+with open('mon_fichier.txt', 'r') as fichier:
+    while True:
+        ligne = fichier.readline()
+        if not ligne:
+            break
+        print(line.strip())
+```
+
+> Lecture de l'entrée standard avec un context manager
+```python
+import sys
+
+with sys.stdin as fichier:
+    while True:
+        ligne = fichier.readline()
+        if not ligne:
+            break
+        print(line.strip())
+```
+
+
+## Docstrings: Documenter son code
+
+En Python, les "docstrings" sont des chaînes de caractères utilisées pour documenter des parties spécifiques du code, telles que les modules, les classes, les méthodes ou les fonctions.
+
+Contrairement aux commentaires classiques, les docstrings sont conservées tout au long de l'exécution du programme et peuvent être accessibles à l'aide de la fonction `help()` ou via l'attribut `__doc__` de l'objet concerné.
+
+Pour définir une docstring, il suffit d'encadrer la description avec des triples guillemets (simples ou doubles) au début de la section de code que vous souhaitez documenter.
+
+> Docstring
+```python
+def ma_fonction(x, y):
+    """
+    Cette fonction calcule la somme de deux nombres.
+    
+    Arguments:
+    x -- le premier nombre
+    y -- le second nombre
+    
+    Retourne:
+    La somme de x et y.
+    """
+    return x + y
+```
+
+## Linter
+Un "linter" est un outil qui analyse le code source pour détecter des erreurs, des bugs, des styles non conformes et d'autres problèmes potentiels.
+
+En Python, l'utilisation d'un linter est essentielle pour maintenir la qualité du code, assurer sa lisibilité et prévenir les erreurs avant l'exécution. Des linters populaires comme `pylint` ou `flake8` offrent une analyse approfondie du code, allant des erreurs de syntaxe aux conventions de nommage en passant par la complexité des fonctions.
+
+En intégrant un linter dans le processus de développement, les développeurs peuvent s'assurer que leur code respecte les standards de la communauté, facilite la collaboration et réduit les risques d'erreurs. De plus, de nombreux environnements de développement intégrés (IDE) supportent l'intégration de linters, permettant ainsi une vérification en temps réel à mesure que le code est écrit.
+
+> Exemple de code avec des "problèmes"
+```python
+def maFonction():
+  return "Bonjour tout le monde!"
+```
+
+> Sortie de pylint
+```python
+************* Module exemple
+exemple.py:1:0: C0103: Function name "maFonction" doesn't conform to snake_case naming style (invalid-name)
+exemple.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 5.00/10 (previous run: 5.00/10, +0.00)
+```
+
+> Code corrigé
+```python
+def ma_fonction():
+    """
+    Retourne un message de salutation.
+    """
+    return "Bonjour tout le monde!"
+```
+
+> Sortie de pylint sur le code corrigé
+```python
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 5.00/10, +5.00)
+```
