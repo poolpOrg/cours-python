@@ -1113,3 +1113,258 @@ il les fait à votre place,
 c'est à double tranchant:
 le développement est simplifié et les bugs de gestion mémoire sont quasi inexistants...
 mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
+
+# Session 2
+Dans la première session,
+nous avons survolé le langage et sa syntaxe de manière générale.
+
+Dans cette session,
+nous allons aborder les fonctionnalités orientées objet du langage.
+
+
+## La Programmation Orientée Objet (POO) en très très résumé
+La POO est un paradigme de programmation,
+une façon de se représenter les problèmes d'une certaine manière,
+au même titre que la programmation procédurale,
+ou la programmation fonctionnelle.
+
+La POO est une façon d'écrire des programmes en pensant les différentes composantes de ce programme en termes d'"objets",
+un peu comme si vous organisiez une boîte à outils.
+Chaque objet est comme un outil spécifique ayant une fonction précise (comme un marteau ou une vis).
+Ces objets peuvent avoir des caractéristiques (par exemple, la couleur du marteau) et des actions qu'ils peuvent effectuer (comme clouer avec le marteau).
+En regroupant les caractéristiques et les actions au sein d'objets,
+cela rend le code plus organisé,
+plus clair et plus facile à gérer.
+
+La POO repose fortement sur la notion d'objets,
+avec leurs caractéristiques et leurs actions,
+mais aussi fortement sur la relation que les objets ont les uns avec les autres comme nous allons le voir.
+
+
+## Python est-il un bon langage pour la programmation orientée objet ?
+Lorsqu'il est question de POO,
+il est courant d'y associer immédiatement le Java ou le C++ tant le paradigme objet est au coeur de ces langages.
+
+Dans la pratique,
+tout paradigme est problématique dans son excès et la POO n'est pas un cas à part.
+
+Lorsque l'on suit tous les préceptes de la POO à la lettre,
+le code est théoriquement très élégant mais l'on peut se perdre dans des abstractions et ce que l'on appelle souvent l'over-engineering,
+monter une solution beaucoup plus complexe que ce qu'elle a besoin d'être:
+les abstractions s'empilent les unes sur les autres,
+on comprends à la lecture du code ce qu'il est censé faire en théorie,
+mais on perds le fil de ce qu'il se passe en pratique au travers des différentes couches.
+La POO demande un certain niveau d'expertise pour produire quelque chose de proprement élégant.
+
+Python est un très bon compromis car il permet la POO mais sans imposer toute la théorie rigide.
+Il est possible de respecter strictement les préceptes de la POO,
+mais il est aussi possible de s'en écarter par moment,
+ce qui permet de trouver l'équilibre entre code proprement découpé et lasagne d'abstractions.
+
+Personnellement,
+si je dois faire de la POO,
+j'irai naturellement vers Python _justement_ parce qu'il va permettre d'être pragmatique,
+tout simplement.
+
+
+## Classes, instances et cycle de vie de l'objet
+Les classes permettent de créer de nouveau types à partir de types existants qui sont eux même des classes.
+
+En Python, `int` ou `float` sont des classes,
+`True` et `False` sont des instances de la classe `bool`,
+`None` est une instance de la classe `NoneType` et...
+même la fonction builtin `print()` est une instance de la classe `builtin_function_or_method`.
+
+En Python tout est objet,
+donc creusons un peu ce qu'est une classe, une instance et le cycle de vie des objets.
+
+
+### Classe
+Une classe est un modèle à partir duquel des objets sont créés.
+Elle définit des attributs et des méthodes qui caractérisent tout objet créé à partir de cette classe.
+> classe
+```python
+class Chat:
+    couleur = "noir"
+```
+
+### Instance
+Une instance est un objet individuel créé à partir d'une classe. Chaque instance a ses propres attributs qui peuvent être différents des valeurs par défaut définies dans la classe.
+> instance
+```python
+mon_chat = Chat()
+```
+
+### Cycle de vie de l'objet
+Le cycle de vie d'un objet commence lorsqu'il est créé (instancié) et se termine lorsqu'il est détruit.
+Python gère automatiquement la gestion de la mémoire,
+mais fournit des méthodes spéciales (comme `__init__` et `__del__`) pour initialiser et nettoyer les ressources.
+
+
+## Méthodes, constructeurs et déstructeurs
+
+### Méthodes
+Ce sont des fonctions définies à l'intérieur d'une classe et elles opèrent sur des données membres de cette classe.
+> Méthodes
+```python
+class Chat:
+    def miauler(self):
+        print("Miaou!")
+```
+
+### Constructeurs (`__init__`)
+C'est une méthode spéciale qui est automatiquement appelée lors de la création d'une instance. Elle est généralement utilisée pour initialiser les attributs.
+
+> Constructeur
+```python
+class Chat:
+    def __init__(self, nom):
+        self.nom = nom
+```
+
+### Destructeurs (`__del__`)
+Bien que rarement utilisé en Python (car Python a un ramasse-miettes),
+c'est une méthode qui est appelée lorsque l'objet est sur le point d'être détruit.
+
+> Destructeur
+```python
+class Chat:
+    def __del__(self):
+        print("L'objet chat est détruit.")
+```
+
+### Getters et setters
+Les getters et setters sont des méthodes utilisées en programmation orientée objet pour contrôler l'accès aux attributs d'un objet.
+
+- Getter : C'est une méthode qui permet d'obtenir la valeur d'un attribut privé. Au lieu d'accéder directement à l'attribut, vous utilisez le getter pour le récupérer. Cela permet d'encapsuler (ou cacher) la représentation interne de l'attribut.
+
+- Setter : C'est une méthode qui permet de définir ou de modifier la valeur d'un attribut privé. Au lieu de modifier directement l'attribut, vous utilisez le setter. Cela permet d'ajouter des contrôles ou des validations lors de la modification de l'attribut.
+
+
+> Getter & Setter
+```python
+class Chat:
+    def __init__(self, value):
+        self._nom = value
+
+    def get_nom(self):
+        return self._nom
+
+    def set_nom(self, value):
+        if not value:
+            raise ValueError("Le nom ne peut pas être vide.")
+        self._nom = value
+
+>>> c = Chat('Ragazza')
+>>> c.get_nom()
+'Ragazza'
+>>> c.set_nom('Gaufrette')
+>>> c.get_nom()
+'Gaufrette'
+```
+
+En Python, les getters et setters sont souvent définis à l'aide des propriétés (`property`),
+nous verrons les annotations plus tard,
+c'est juste une manière de montrer qu'il y a plusieurs approches pour cacher un attribut privé.
+
+> Getter & Setter pour les fortiches
+```python
+class Chat:
+    def __init__(self, value):
+        self._nom = value
+
+    @property
+    def nom(self):
+        return self._nom
+
+    @nom.setter
+    def nom(self, value):
+        if not value:
+            raise ValueError("Le nom ne peut pas être vide.")
+        self._nom = value
+
+>>> c = Chat('Ragazza')
+>>> c.nom
+'Ragazza'
+>>> c.nom = 'Gaufrette'
+>>> c.nom
+'Gaufrette'
+```
+
+Dans le premier exemple,
+au lieu d'accéder directement à l'attribut _marque,
+on utilise les méthodes get_nom (getter) et set_nom (setter) pour obtenir et définir sa valeur,
+tout en ajoutant une validation dans le setter.
+
+Dans le second,
+on utilise une fonctionnalité avancée,
+les annotations,
+pour exposer une méthode comme un attribut et s'en servir comme tel.
+L'avantage dans ce cas est que la méthode peut embarquer de la logique,
+puisqu'il ne sá git pas d'un vrai attribut mais d'une fonction,
+elle pourrait convertir tout en majuscule ou minuscule de manière transparente:
+
+> Getter & Setter pour les fortiches avec logique dans le getter
+```python
+class Chat:
+    def __init__(self, value):
+        self._nom = value
+
+    @property
+    def nom(self):
+        return self._nom.upper
+
+    @nom.setter
+    def nom(self, value):
+        if not value:
+            raise ValueError("Le nom ne peut pas être vide.")
+        self._nom = value
+
+>>> c = Chat('Ragazza')
+>>> c.nom
+'RAGAZZA'
+>>> c.nom = 'Gaufrette'
+>>> c.nom
+'GAUFRETTE'
+```
+
+## Encapsulation et visibilité
+
+### Encapsulation
+C'est le regroupement des données et des méthodes qui opèrent sur ces données en une seule unité (classe). Cela permet de cacher les détails de mise en œuvre.
+
+### Visibilité
+En Python, la visibilité des membres de la classe est déterminée par des conventions de nommage.
+Un nom commençant par un underscore (comme _privé) est traité comme "protégé",
+et un nom commençant par deux underscores (comme __privé) est traité comme "privé".
+
+Dans d'autres langages,
+cette notion de visibilité est stricte et implique l'utilisation de mots clefs pour indiquer si un membre est public, privé ou protégé,
+mais en Python c'est une convention d'écriture:
+on peut décider de passer outre si l'on veut vraiment.
+
+Cette visibilité s'applique aussi bien aux variables qu'aux méthodes,
+de fait la méthode `__init__` peut être considérée comme "privée" puisqu'elle débute par '__'.
+
+
+> Visibilité
+```python
+class Voiture:
+    def __init__(self):
+        self.marque = "Toyota"  # Public
+        self._secret = "12345"  # Protégé
+        self.__code_privé = "abcd"  # Privé
+```
+
+## Membre de classe
+Les membres de classe (ou variables de classe) sont des attributs qui sont définis au niveau de la classe, et non au niveau de l'instance.
+Ils sont partagés par toutes les instances de la classe.
+
+> Membre de Classe
+```python
+class Voiture:
+    nombre_de_roues = 4  # Membre de classe
+
+    def __init__(self, marque):
+        self.marque = marque  # Attribut d'instance
+```
