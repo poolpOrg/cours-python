@@ -3,6 +3,32 @@ weight: 10
 title: API Reference
 ---
 
+# Avant toutes choses
+
+Ce cours est une introduction à la programmation en Python et à la programmation orientée objet (POO),
+préparée par Gilles CHEHADE,
+et publié dans le domaine public sous license ISC.
+
+```text
+Copyright (c) 2023 Gilles CHEHADE <gilles@poolp.org>
+
+Permission to use, copy, modify, and distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
+
+Il peut être réutilisé et modifié librement,
+la mention de l'auteur et de la license est néanmoins obligatoire.
+
+
 # Introduction
 
 Python est un langage de programmation de haut niveau, interprété et polyvalent.
