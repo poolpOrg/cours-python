@@ -1115,73 +1115,6 @@ le développement est simplifié et les bugs de gestion mémoire sont quasi inex
 mais vous ne pouvez pas gérer la mémoire aussi finement que vous le voulez.
 
 
-## Exercices
-
-### exo01.py - input et print
-À l'aide des fonctions builtin `input()` et `print()`,
-écrire un programme qui demande à l'utilisateur d'entrer son prénom et son nombre préféré,
-puis afficher les informations.
-
-> exo01.py
-```sh
-$ python exo01.py
-Quel est ton prénom ? Gilles
-Quel est ton nombre préféré ? 42
-Tu t'appelles Gilles et ton nombre préféré est 42.
-$ 
-```
-
-### exo02.py - boucle for
-Créer une boucle `for` qui affiche les nombres de 1 à 10.
-
-> exo02.py
-```sh
-$ python exo02.py
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-$ 
-```
-
-### exo03.py - boucle while
-Créer une boucle `while` qui affiche les nombres de 1 à 10,
-sans afficher le chiffre 3.
-
-> exo03.py
-```sh
-$ python exo03.py
-1
-2
-4
-5
-6
-7
-8
-9
-10
-$ 
-```
-
-### exo04.py - puissance de 2
-En important le module `sys`,
-vous aurez accès aux paramètres passés à votre programme au travers du tableau `sys.argv`.
-La fonction builtin `int()` permet de convertir une chaine en nombre,
-donc `int("10")` retourne `10`.
-Créer une fonction `puissance(n)` qui retourne 2 à la puissance de `n`.
-
-> exo04.py
-```sh
-$ python exo04.py
-1024
-$ 
-```
 
 # Session 2
 Dans la première session,
@@ -1438,17 +1371,6 @@ class Voiture:
         self.marque = marque  # Attribut d'instance
 ```
 
-## Exercices
-
-### exo101.py
-Créer une classe Voiture avec des attributs pour la marque, le modèle et l'année, et une méthode pour afficher ces informations.
-
-### exo102.py
-Ajouter des constructeurs et destructeurs à la classe "Voiture".
-
-### exo103.py
-Implémenter l'encapsulation en rendant les attributs de la classe "Voiture" privés et en utilisant des getters et setters.
-
 
 # Session 3
 
@@ -1658,24 +1580,3 @@ En résumé, les classes abstraites en Python permettent de définir un "contrat
 Dans notre exemple précédent,
 `Chien` et `Chat` sont des classes concrètes car elles implémentent le contrat d'une classe abstraite et peuvent être instanciés.
 
-
-
-## Exercices
-
-### exo201.py
-Créer une classe Vehicule qui décrire les propriétés générales d'un Véhicule
-
-### exo202.py
-Créer une classe Bicyclette qui hérite de Véhicule et possède des attributs et méthodes spécifiques à ce type de véhicule
-
-### exo203.py
-Créer une classe Voiture qui hérite de Véhicule et possède des attributs et méthodes spécifiques à ce type de véhicule
-
-### exo203.py
-Créer une classe Moto qui hérite de Véhicule et possède des attributs et méthodes spécifiques à ce type de véhicule
-
-### exo204.py
-Implémenter le polymorphisme en créant une méthode `klaxon()` pour tous ces véhicules produisant un son différent.
-
-### exo205.py
-Comment introduiriez-vous la notion de véhicule électrique ?
