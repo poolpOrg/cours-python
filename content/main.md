@@ -1333,8 +1333,6 @@ with sys.stdin as fichier:
 ```
 
 
-<<<<<<< HEAD
-=======
 ## Gestion des erreurs et exceptions en Python
 
 Dans le processus de développement, il est courant de rencontrer des erreurs.
@@ -1400,7 +1398,6 @@ finally:
 ```
 
 
->>>>>>> session-2
 ## Docstrings: Documenter son code
 
 En Python, les "docstrings" sont des chaînes de caractères utilisées pour documenter des parties spécifiques du code, telles que les modules, les classes, les méthodes ou les fonctions.
@@ -1463,8 +1460,6 @@ def ma_fonction():
 Your code has been rated at 10.00/10 (previous run: 5.00/10, +5.00)
 ```
 
-<<<<<<< HEAD
-=======
 
 ## Création d'un package avec des modules en Python
 
@@ -1481,7 +1476,6 @@ Ensuite, vous pouvez ajouter autant de modules (fichiers `.py`) que vous le souh
 Cette organisation modulaire facilite la maintenance, le partage et la réutilisation du code.
 
 
->>>>>>> session-2
 # Session 2
 Dans la première session,
 nous avons survolé le langage et sa syntaxe de manière générale.
