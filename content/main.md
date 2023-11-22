@@ -1333,6 +1333,71 @@ with sys.stdin as fichier:
 ```
 
 
+## Gestion des erreurs et exceptions en Python
+
+Dans le processus de développement, il est courant de rencontrer des erreurs.
+
+En Python, il existe deux types principaux d'erreurs : les erreurs de syntaxe et les exceptions.
+
+Les erreurs de syntaxe, souvent appelées erreurs de parsing, se produisent lorsque le programme contient une instruction qui n'est pas conforme à la syntaxe du langage. Par exemple, oublier de fermer une parenthèse ou d'ajouter un deux-points à la fin d'une instruction conditionnelle.
+
+Les exceptions, en revanche, se produisent lors de l'exécution du programme, même si la syntaxe est correcte. Cela peut être dû à des opérations invalides, comme tenter de diviser par zéro ou d'accéder à un fichier qui n'existe pas.
+
+Heureusement, Python offre des mécanismes pour gérer ces exceptions grâce aux instructions try et except. En enveloppant le code susceptible de lever une exception dans un bloc `try`, et en définissant comment traiter cette exception dans un bloc `except`, vous pouvez contrôler la manière dont votre programme réagit aux erreurs inattendues, permettant ainsi une exécution plus robuste et prévisible.
+
+
+> Exceptions simples
+```python
+try:
+    # Demande à l'utilisateur de saisir un nombre
+    num = int(input("Entrez un nombre: "))
+    print(f"Vous avez saisi {num}")
+
+except ValueError:
+    print("Erreur : Ce n'est pas un nombre valide !")
+```
+
+> Exceptions simples mais avec capture d'informatiosn
+```python
+try:
+    # Demande à l'utilisateur de saisir un nombre et tente de le diviser par zéro
+    num = int(input("Entrez un nombre: "))
+    resultat = num / 0
+
+except Exception as exc:
+    print(f"Une erreur s'est produite : {exc}")
+```
+
+
+> Gestion totale des exceptions
+```python
+try:
+    # Demande à l'utilisateur de saisir deux nombres
+    num1 = int(input("Entrez le premier nombre: "))
+    num2 = int(input("Entrez le deuxième nombre: "))
+
+    # Tente de diviser les deux nombres
+    resultat = num1 / num2
+    print(f"Le résultat de {num1} divisé par {num2} est {resultat}")
+
+except ZeroDivisionError:
+    # s'il y a division par zéro
+    print("Erreur : Division par zéro !")
+
+except ValueError:
+    # si num1 ou num2 ne sont pas des nombres
+    print("Erreur : Veuillez saisir un nombre valide !")
+
+except Exception as exc:
+    # toute autre erreur (ici, aucune possible)
+    print(f"Erreur : Je ne comprends pas ce qu'il se passe: {exc}")
+
+finally:
+    # éxecuté dans tous les cas, exception ou non
+    print("Fin de l'opération.")
+```
+
+
 ## Docstrings: Documenter son code
 
 En Python, les "docstrings" sont des chaînes de caractères utilisées pour documenter des parties spécifiques du code, telles que les modules, les classes, les méthodes ou les fonctions.
@@ -1394,6 +1459,22 @@ def ma_fonction():
 --------------------------------------------------------------------
 Your code has been rated at 10.00/10 (previous run: 5.00/10, +5.00)
 ```
+
+
+## Création d'un package avec des modules en Python
+
+Dans Python, un package est une manière d'organiser des modules associés dans un répertoire unique.
+
+Ce regroupement permet de structurer le code de manière plus claire, surtout lorsque votre projet commence à grandir.
+
+Pour créer un package, commencez par créer un répertoire (dossier) qui portera le nom de votre package.
+
+À l'intérieur de ce répertoire, placez un fichier spécial nommé `__init__.py` (qui peut être vide) pour indiquer à Python que ce répertoire doit être traité comme un package ou un module.
+
+Ensuite, vous pouvez ajouter autant de modules (fichiers `.py`) que vous le souhaitez dans ce répertoire. Par exemple, si vous créez un package nommé `mon_package` contenant les modules `module1.py` et `module2.py`, vous pourrez ensuite importer ces modules dans votre code principal en utilisant `from mon_package import module1, module2`.
+
+Cette organisation modulaire facilite la maintenance, le partage et la réutilisation du code.
+
 
 # Session 2
 Dans la première session,
