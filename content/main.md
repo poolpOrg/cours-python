@@ -1940,3 +1940,247 @@ En résumé, les classes abstraites en Python permettent de définir un "contrat
 Dans notre exemple précédent,
 `Chien` et `Chat` sont des classes concrètes car elles implémentent le contrat d'une classe abstraite et peuvent être instanciés.
 
+
+# Session 4
+
+## Design patterns
+
+Les design patterns sont des solutions standardisées pour résoudre des problèmes courants en programmation orientée objet.
+Ils offrent des modèles éprouvés pour concevoir des logiciels robustes et maintenables.
+Il y a de très nombreux design patterns,
+et des ouvrages consacrés,
+nous allons explorer six design patterns clés.
+
+Il existe de nombreux design patterns,
+l'ouvrage de référence "Design Patterns: Elements of Reusable Object-Oriented Software" en recense 23,
+mais d'autres ont été créés par la suite et vous êtes libres de trouver vos propres patterns.
+
+Dans ceux de l'ouvrage de référence,
+on dénombre 5 patterns "créationnels" qui concernent la création d'objects,
+7 patterns "structurels" qui concernent la structure des objets,
+et 11 patterns "comportementaux" qui concernent le comportement des objets et leurs intéractions.
+
+
+
+
+### Singleton
+
+Le pattern Singleton garantit qu'une classe n'a qu'une seule instance et fournit un point d'accès global à celle-ci.
+Ce modèle est souvent utilisé pour gérer des ressources partagées.
+
+> singleton
+```python
+class Singleton:
+    _instance = None
+
+    @classmethod
+    def getInstance(cls):
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
+```
+
+> singleton, methode alternative
+```python
+singleton_object = None
+
+class Singleton:
+    pass
+
+def get_singleton_object():
+    global singleton_object
+    if singleton_object is None:
+        singleton_object = Singleton()
+    return singleton_object
+```
+
+
+### Factory
+
+La Factory fournit une interface pour créer des objets dans une super-classe,
+mais permet aux sous-classes de modifier le type d'objets qui seront créés.
+Il est utile pour décentraliser la création d'objets.
+
+> factory
+```python
+class Animal:
+    def parler(self):
+        pass
+
+class Chien(Animal):
+    def parler(self):
+        return "Woof!"
+
+class Chat(Animal):
+    def parler(self):
+        return "Miaou!"
+
+def get_animal(type_animal):
+    animaux = {"chien": Chien(), "chat": Chat()}
+    return animaux[type_animal]
+```
+
+
+### Observer
+
+Ce pattern établit une relation entre des objets de manière à ce que,
+lorsqu'un objet change d'état,
+tous ceux qui en dépendent en sont automatiquement notifiés.
+
+> observer
+```python
+class Observer:
+    def notifier(self, message):
+        pass
+
+class Sujet:
+    def __init__(self):
+        self._observateurs = []
+
+    def ajouter(self, observateur):
+        self._observateurs.append(observateur)
+
+    def notifier_tous(self, message):
+        for observateur in self._observateurs:
+            observateur.notifier(message)
+```
+
+
+### Decorator
+Le Decorator ajoute dynamiquement des responsabilités supplémentaires à un objet.
+Il offre une alternative flexible à l'héritage pour étendre les fonctionnalités.
+
+> decorator
+```python
+def mon_decorator(func):
+    def wrapper():
+        return "<b>" + func() + "</b>"
+    return wrapper
+
+@mon_decorator
+def dire_bonjour():
+    return "Bonjour!"
+```
+
+### Strategy
+
+Le pattern Strategy définit une famille d'algorithmes,
+les encapsule et les rend interchangeables.
+Il permet à l'algorithme de varier indépendamment des clients qui l'utilisent.
+
+> strategy
+```python
+class Operation:
+    def executer(self, a, b):
+        pass
+
+class Addition(Operation):
+    def executer(self, a, b):
+        return a + b
+
+class Soustraction(Operation):
+    def executer(self, a, b):
+        return a - b
+
+class Contexte:
+    def __init__(self, strategie):
+        self._strategie = strategie
+
+    def executer_strategie(self, a, b):
+        return self._strategie.executer(a, b)
+```
+
+
+
+### Visitor
+Le pattern Visitor permet de séparer les algorithmes des objets sur lesquels ils opèrent.
+Il est particulièrement utile dans les situations où vous avez besoin de réaliser des opérations sur une série d'objets de différentes classes sans changer leur code.
+
+> visitor
+```python
+
+# Chien et Chat implémentent la méthode accept
+class Animal:
+    def accept(self, visitor):
+        pass
+
+class Chien(Animal):
+    def __init__(self, nom):
+        self.nom = nom
+
+    def accept(self, visitor):
+        visitor.visiter_chien(self)
+
+class Chat(Animal):
+    def __init__(self, nom):
+        self.nom = nom
+
+    def accept(self, visitor):
+        visitor.visiter_chat(self)
+
+# voici concrètement une interface, ce pourrait être une classe abstraite
+class VisiteurAnimal:
+    def visiter_chien(self, chien):
+        pass
+
+    def visiter_chat(self, chat):
+        pass
+
+# on va écrire un visiteur pour saluer les animux
+class VisiteurSalutation(VisiteurAnimal):
+    def visiter_chien(self, chien):
+        print(f"Bonjour, chien {chien.nom}!")
+
+    def visiter_chat(self, chat):
+        print(f"Bonjour, chat {chat.nom}!")
+
+
+# Création des animaux
+rex = Chien("Rex")
+felix = Chat("Felix")
+
+# Création et utilisation du visiteur
+visiteur = VisiteurSalutation()
+rex.accept(visiteur)
+felix.accept(visiteur)
+
+# ou encore:
+for animal in [rex, felix]:
+    animal.accept(visiteur)
+```
+
+
+### Adapter
+Le pattern Adapter, également connu sous le nom d'Adaptateur,
+permet à des interfaces incompatibles de travailler ensemble.
+Il agit comme un intermédiaire entre deux classes,
+convertissant l'interface d'une classe en une autre interface attendue par les clients.
+
+> adapter
+```python
+class Chien:
+    def aboyer(self):
+        return "Woof!"
+
+class Chat:
+    def miauler(self):
+        return "Miaou!"
+
+class Adapter:
+    def __init__(self, objet, adaptations):
+        self.objet = objet
+        self.__dict__.update(adaptations)
+
+    def faire_du_bruit(self):
+        pass
+
+# Utilisation de l'Adapter
+chien = Chien()
+chat = Chat()
+
+adaptateur_chien = Adapter(chien, {"faire_du_bruit": chien.aboyer})
+adaptateur_chat = Adapter(chat, {"faire_du_bruit": chat.miauler})
+
+print(adaptateur_chien.faire_du_bruit())  # Woof!
+print(adaptateur_chat.faire_du_bruit())  # Miaou!
+```
